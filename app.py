@@ -59,7 +59,7 @@ def create_product():
     return jsonify({'id': product_id}), 201
 
 @app.post('/api/add_product_form')
-def create_product():
+def create_product_form():
     
     category = request.form['category']
     price = request.form['price']
