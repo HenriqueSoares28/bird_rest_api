@@ -10,7 +10,7 @@ CREATE_PRODUCT_TABLE = (
             price INTEGER NOT NULL,
             name VARCHAR(255) NOT NULL,
             description VARCHAR(255) NOT NULL,
-            size INTEGER NOT NULL,
+            size VARCHAR(3) NOT NULL,
             rating INTEGER NOT NULL,
             quantity INTEGER NOT NULL,
             user_id INTEGER NOT NULL,
