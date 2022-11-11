@@ -67,6 +67,24 @@ def get_products(id):
             connection.commit()
     return jsonify({'product': product}), 200
 
+@app.get('/api/get_products')
+def get_all_products():
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT * FROM products')
+            products = cursor.fetchall()
+            connection.commit()
+    return jsonify({'products': products}), 200
+
+@app.get('/api/get_products_by_user/<user_id>')
+def get_products_by_user(user_id):
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT * FROM products WHERE user_id = %s', (user_id))
+            products = cursor.fetchall()
+            connection.commit()
+    return jsonify({'products': products}), 200
+
 @app.get('/')
 def home():
     return "hello world"
