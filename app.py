@@ -58,6 +58,29 @@ def create_product():
             connection.commit()
     return jsonify({'id': product_id}), 201
 
+@app.post('/api/add_product_form')
+def create_product():
+    
+    category = request.form['category']
+    price = request.form['price']
+    name = request.form['name']
+    description = request.form['description']
+    size = request.form['size']
+    rating = request.form['rating']
+    quantity = request.form['quantity']
+    user_id = request.form['user_id']
+    img_url = request.form['img_url']
+    cep = request.form['cep']
+    
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute(CREATE_PRODUCT_TABLE)
+            cursor.execute(INSERT_PRODUCT_RETURN_ID, (category, price, name, description, size, rating, quantity, user_id, img_url, cep))
+            product_id = cursor.fetchone()[0]
+            connection.commit()
+    return jsonify({'id': product_id}), 201
+
+
 @app.get('/api/products/<id>')
 def get_products(id):
     with connection:
