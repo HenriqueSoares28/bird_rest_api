@@ -66,3 +66,7 @@ def get_products(id):
             product = cursor.fetchone()
             connection.commit()
     return jsonify({'product': product}), 200
+
+@app.get('/')
+def home():
+    return "hello world"
